@@ -1,6 +1,6 @@
 debugMode = false
 devMode = false
-rootLib = C:\Users\Admin\Desktop\pieceDeck
-versionName = 0.4
-version = 4
+rootLib = D:\Users\log_i\Desktop\pieceDeck
+versionName = 0.5
+version = 5
 versionType = CLOSED_ALPHA

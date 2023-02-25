@@ -9,6 +9,7 @@ versionName = lines[3][14:][:-1]
 version = lines[4][10:][:-1]
 versionType = lines[5][14:][:-1]
 firstTime = lines[2][10:][:-1] == 'INSERT_SYSTEM_PATH_HERE'
+print(f'pieceDeck {versionType} {versionName}')
 if firstTime:
     print('''IF YOU ARE USING PIECEDECK FOR THE FIRST
 TIME ON THIS COMPUTER THEN GO TO config.txt AND
@@ -19,7 +20,6 @@ INSERT YOUR PATH TO PIECEDECK EXECUTABLE''')
 rootLib_ = lines[2][10:][:-1].replace('\\\\', '\\')
 rootLib = ''.join(rootLib_)
 config.close()
-
 
 UI = {
     'WELCOME_TEXT': 'Welcome to pieceDesk!',
