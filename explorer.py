@@ -17,11 +17,16 @@ def explorer(user):
             print(*dirs, sep=' (dir)\n', end=' (dir)\n')
             print(*files, sep='\n')
             continue
+        elif '/help' in input_:
+            help = open('README.txt', 'r', encoding='utf-8')
+            help_ = help.readlines()
+            for i in range(1, 6):
+                print(help_[i], end='')
         elif '/cd ' in input_:
             destination = ' '.join(input_.split()[1:])
             if os.path.exists(currentPath + '/' + destination ):
                 os.chdir(destination)
-                if 'pieceDeck' in '/'.join(os.getcwd().split('\\')):
+                if rootLib in '/'.join(os.getcwd().split('\\')):
                     currentPath = '/'.join(os.getcwd().split('\\'))
                 else:
                     print('Access denied!')
@@ -32,7 +37,14 @@ def explorer(user):
         elif '/mkd 'in input_:
             if not os.path.isdir(input_.split()[1]):
                 os.mkdir(input_.split()[1])
-        elif '/s' in input_:
+                print('Folder created successfully!')
+        elif '/rmd ' in input_:
+            if os.path.isdir(input_.split()[1]):
+                os.rmdir(input_.split()[1])
+                print('Folder deleted successfully!')
+            else:
+                print('Folder already doesn\'t exist!')
+        elif '/shutdown' in input_:
             if debugMode:
                 print('********************DEBUG********************')
                 print(f'users = {initUsers()}')
