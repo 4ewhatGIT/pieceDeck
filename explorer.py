@@ -20,7 +20,7 @@ def explorer(user):
         elif '/help' in input_:
             help = open('README.txt', 'r', encoding='utf-8')
             help_ = help.readlines()
-            for i in range(1, 6):
+            for i in range(1, 8):
                 print(help_[i], end='')
         elif '/cd ' in input_:
             destination = ' '.join(input_.split()[1:])
@@ -34,7 +34,7 @@ def explorer(user):
             else:
                 print('Invalid path!')
             print(currentPath)
-        elif '/mkd 'in input_:
+        elif '/mkd ' in input_:
             if not os.path.isdir(input_.split()[1]):
                 os.mkdir(input_.split()[1])
                 print('Folder created successfully!')
@@ -44,7 +44,9 @@ def explorer(user):
                 print('Folder deleted successfully!')
             else:
                 print('Folder already doesn\'t exist!')
-        elif '/shutdown' in input_:
+        elif '/echo ' in input_:
+            print(*input_.split()[1:], sep=' ')
+        elif '/exit' in input_:
             if debugMode:
                 print('********************DEBUG********************')
                 print(f'users = {initUsers()}')

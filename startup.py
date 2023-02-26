@@ -62,7 +62,8 @@ class User:
 
 def login_screen(users):
     for user in users:
-        print(user.name)
+        if user.rights != 'god':
+            print(user.name)
     user_logon = input('Select user:')
     for user in users:
         if user.name == user_logon:
