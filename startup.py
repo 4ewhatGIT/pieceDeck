@@ -45,10 +45,10 @@ if devMode:
 
 
 class User:
-    def __init__(self, name, password=''):
+    def __init__(self, name, rights, password=''):
         self.name = name
         self.password = password
-        self.rights = 'none'
+        self.rights = rights
     def login(self):
         if bool(self.password):
             passwordGuess = input(UI['PASSWORD_ENTER'] + '\n')
@@ -59,23 +59,6 @@ class User:
         print(UI['LOGIN_SUCCESS'] + self.name)
         return self
 
-class DefaultUser(User):
-    def __init__(self, name, password=''):
-        self.name = name
-        self.password = password
-        self.rights = 'user'
-
-class AdminUser(User):
-    def __init__(self, name, password=''):
-        self.name = name
-        self.password = password
-        self.rights = 'admin'
-
-class GodUser(User):
-    def __init__(self, name, password=''):
-        self.name = name
-        self.password = password
-        self.rights = 'god'
 
 def login_screen(users):
     for user in users:
@@ -89,8 +72,10 @@ def initUsers():
     users_file = open(r'users_\users', 'r', encoding='utf-8')
     users_ = users_file.readlines()
     user_names = [users_[i].split('#$%^')[0] for i in range(len(users_))]
-    user_passwords = [users_[i].split('#$%^')[1].split('\n')[0] for i in range(len(users_))]
-    users = [DefaultUser(user_names[i], user_passwords[i]) for i in range(len(users_))]
+    user_passwords = [users_[i].split('#$%^')[1] for i in range(len(users_))]
+    user_rights = [users_[i].split('#$%^')[2].split('\n')[0] for i in range(len(users_))]
+
+    users = [User(user_names[i], user_rights[i], user_passwords[i]) for i in range(len(users_))]
     users_file.close()
     return users
 
