@@ -17,6 +17,12 @@ def explorer(user):
             print(*dirs, sep=' (dir)\n', end=' (dir)\n')
             print(*files, sep='\n')
             continue
+        elif '/open ' in input_:
+            name = ''.join(input_.split()[1:])
+            osCommandString = "notepad.exe " + name
+            os.system(osCommandString)
+        elif '/del ' in input_:
+            os.remove(''.join(input_.split()[1:]))
         elif '/help' in input_:
             help = open('README.txt', 'r', encoding='utf-8')
             help_ = help.readlines()
@@ -38,6 +44,8 @@ def explorer(user):
             if not os.path.isdir(input_.split()[1]):
                 os.mkdir(input_.split()[1])
                 print('Folder created successfully!')
+            else:
+                print('Folder already exists!')
         elif '/rmd ' in input_:
             if os.path.isdir(input_.split()[1]):
                 os.rmdir(input_.split()[1])
@@ -45,7 +53,12 @@ def explorer(user):
             else:
                 print('Folder already doesn\'t exist!')
         elif '/echo ' in input_:
-            print(*input_.split()[1:], sep=' ')
+            if ' > ' in input_:
+                file = open(input_.split(' > ')[1], 'w+', encoding='utf-8')
+                file.write(''.join(''.join(input_.split(' > ')[0]).split()[1:]))
+                file.close()
+            else:
+                print(*input_.split()[1:], sep=' ')
         elif '/exit' in input_:
             if debugMode:
                 print('********************DEBUG********************')
