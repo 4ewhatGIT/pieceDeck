@@ -54,8 +54,8 @@ class User:
             passwordGuess = input(UI['PASSWORD_ENTER'] + '\n')
             while passwordGuess != self.password:
                 passwordGuess = input(UI['PASSWORD_ENTER_AGAIN'] + '\n')
-            else:
-                pass
+          # else:
+          #    pass
         print(UI['LOGIN_SUCCESS'] + self.name)
         return self
 

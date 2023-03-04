@@ -26,17 +26,13 @@ def explorer(user):
         elif '/help' in input_:
             help = open('README.txt', 'r', encoding='utf-8')
             help_ = help.readlines()
-            for i in range(1, 8):
+            for i in range(1, 10):
                 print(help_[i], end='')
         elif '/cd ' in input_:
             destination = ' '.join(input_.split()[1:])
             if os.path.exists(currentPath + '/' + destination ):
                 os.chdir(destination)
-                if rootLib in '/'.join(os.getcwd().split('\\')):
-                    currentPath = '/'.join(os.getcwd().split('\\'))
-                else:
-                    print('Access denied!')
-                    os.chdir(currentPath)
+                currentPath = '/'.join(os.getcwd().split('\\'))
             else:
                 print('Invalid path!')
             print(currentPath)
@@ -55,7 +51,7 @@ def explorer(user):
         elif '/echo ' in input_:
             if ' > ' in input_:
                 file = open(input_.split(' > ')[1], 'w+', encoding='utf-8')
-                file.write(''.join(''.join(input_.split(' > ')[0]).split()[1:]))
+                file.write(' '.join(''.join(input_.split(' > ')[0]).split()[1:]))
                 file.close()
             else:
                 print(*input_.split()[1:], sep=' ')
